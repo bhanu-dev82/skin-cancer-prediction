@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}SkinAI - AI-Powered Skin Cancer Detection{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Early Detection Saves Lives</h1>
+            <p class="hero-subtitle">Advanced AI-powered analysis of skin lesions using state-of-the-art deep learning models</p>
+            <div class="hero-buttons">
+                <a href="{{ url_for('detect') }}" class="btn btn-primary">Analyze Your Skin</a>
+                <a href="{{ url_for('about') }}" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="how-it-works">
+    <div class="container">
+        <h2 class="section-title">How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <h3>Upload Image</h3>
+                <p>Take a clear photo of your skin lesion or upload an existing image</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>AI Analysis</h3>
+                <p>Our advanced AI models analyze the image with high precision</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <h3>Get Results</h3>
+                <p>Receive detailed analysis with probability scores for different conditions</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="models">
+    <div class="container">
+        <h2 class="section-title">Our AI Models</h2>
+        <div class="model-cards">
+            <div class="model-card">
+                <div class="model-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>MobileNetV2</h3>
+                <p>Lightweight CNN model optimized for mobile devices with 74% accuracy on the HAM10000 dataset</p>
+                <ul class="model-features">
+                    <li><i class="fas fa-check"></i> Fast processing</li>
+                    <li><i class="fas fa-check"></i> Low resource usage</li>
+                    <li><i class="fas fa-check"></i> Optimized for mobile</li>
+                </ul>
+            </div>
+
+            <div class="model-card">
+                <div class="model-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>EfficientNetB0</h3>
+                <p>State-of-the-art architecture with optimal accuracy of 69% on skin cancer classification</p>
+                <ul class="model-features">
+                    <li><i class="fas fa-check"></i> Higher accuracy</li>
+                    <li><i class="fas fa-check"></i> Advanced feature extraction</li>
+                    <li><i class="fas fa-check"></i> Balanced performance</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stats">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">5+</div>
+                <div class="stat-label">Million</div>
+                <div class="stat-desc">Skin cancer cases diagnosed yearly worldwide</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">99%</div>
+                <div class="stat-label">Survival Rate</div>
+                <div class="stat-desc">When melanoma is detected early</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">7</div>
+                <div class="stat-label">Types</div>
+                <div class="stat-desc">Of skin lesions our AI can detect</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="container">
+        <h2>Ready to check your skin?</h2>
+        <p>Early detection is key to successful treatment of skin cancer.</p>
+        <a href="{{ url_for('detect') }}" class="btn btn-primary">Get Started Now</a>
+    </div>
+</section>
+
+<section class="disclaimer">
+    <div class="container">
+        <div class="disclaimer-box">
+            <h3><i class="fas fa-exclamation-triangle"></i> Medical Disclaimer</h3>
+            <p>SkinAI is designed to be an educational tool only and is not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

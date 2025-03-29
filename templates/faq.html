@@ -1,0 +1,261 @@
+{% extends "base.html" %}
+
+{% block title %}Frequently Asked Questions - SkinAI{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Frequently Asked Questions</h1>
+        <p>Find answers to common questions about SkinAI</p>
+    </div>
+</section>
+
+<section class="faq-content">
+    <div class="container">
+        <div class="faq-search">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="faq-search" placeholder="Search questions...">
+            </div>
+        </div>
+
+        <div class="faq-categories">
+            <button class="category-btn active" data-category="all">All</button>
+            <button class="category-btn" data-category="general">General</button>
+            <button class="category-btn" data-category="technical">Technical</button>
+            <button class="category-btn" data-category="medical">Medical</button>
+            <button class="category-btn" data-category="privacy">Privacy & Security</button>
+        </div>
+
+        <div class="faq-list">
+            <!-- General Questions -->
+            <div class="faq-item" data-category="general">
+                <div class="faq-question">
+                    <h3>What is SkinAI?</h3>
+                    <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>SkinAI is an educational tool that uses artificial intelligence to analyze images of skin lesions. Our AI models can help identify potential skin conditions, but the service is not intended to replace professional medical advice or diagnosis.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="general">
+                <div class="faq-question">
+                    <h3>Is SkinAI free to use?</h3>
+                    <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, SkinAI is currently free to use. We believe in making skin health education accessible to everyone.</p>
+                </div>
+            </div>
+
+            <!-- Technical Questions -->
+            <div class="faq-item" data-category="technical">
+                <div class="faq-question">
+                    <h3>How accurate is the AI analysis?</h3>
+                    <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>Our models have been trained on large datasets of dermatological images. MobileNetV2 has approximately 74% accuracy on the HAM10000 dataset, while EfficientNetB0 has about 69% accuracy on skin cancer classification. However, AI analysis should never replace professional medical diagnosis.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="technical">
+                <div class="faq-question">
+                    <h3>What types of skin conditions can SkinAI detect?</h3>
+                    <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>Our AI models can analyze seven types of skin lesions:</p>
+                    <ul>
+                        <li>Actinic keratoses (akiec)</li>
+                        <li>Basal cell carcinoma (bcc)</li>
+                        <li>Benign keratosis-like lesions (bkl)</li>
+                        <li>Dermatofibroma (df)</li>
+                        <li>Melanoma (mel)</li>
+                        <li>Melanocytic nevi (nv)</li>
+                        <li>Vascular lesions (vasc)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="technical">
+                <div class="faq-question">
+                    <h3>What image formats are supported?</h3>
+                    <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>SkinAI supports JPG, JPEG, and PNG image formats. For best results, upload clear, well-lit images with the skin lesion centered in the frame.</p>
+                </div>
+            </div>
+
+            <!-- Medical Questions -->
+            <div class="faq-item" data-category="medical">
+                <div class="faq-question">
+                    <h3>Can SkinAI diagnose skin cancer?</h3>
+                    <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>No, SkinAI cannot provide medical diagnoses. Our AI models can analyze skin lesions and provide information about potential conditions, but this should be used for educational purposes only. Always consult a healthcare professional for proper diagnosis and treatment.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="medical">
+                <div class="faq-question">
+                    <h3>What should I do if SkinAI indicates a high probability of melanoma?</h3>
+                    <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>If SkinAI indicates a high probability of melanoma or any concerning skin condition, you should consult with a dermatologist or healthcare provider as soon as possible. Remember that SkinAI is an educational tool and not a diagnostic device.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="medical">
+                <div class="faq-question">
+                    <h3>How often should I check my skin for changes?</h3>
+                    <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>Most dermatologists recommend performing a self-examination of your skin once a month. Look for changes in existing moles or the appearance of new spots. The ABCDE rule can help identify concerning features: Asymmetry, Border irregularity, Color variation, Diameter larger than 6mm, and Evolving size, shape, or color.</p>
+                </div>
+            </div>
+
+            <!-- Privacy & Security Questions -->
+            <div class="faq-item" data-category="privacy">
+                <div class="faq-question">
+                    <h3>Is my data private and secure?</h3>
+                    <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes. We do not store your uploaded images on our servers. All processing is done in real-time, and images are not saved after analysis. Your privacy is our priority. For more details, please review our <a href="{{ url_for('privacy') }}">Privacy Policy</a>.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="privacy">
+                <div class="faq-question">
+                    <h3>Do you share my data with third parties?</h3>
+                    <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>No, we do not sell, trade, or otherwise transfer your information to third parties. We may share anonymized, aggregated data for research or educational purposes, but this will never include personally identifiable information or your uploaded images.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="privacy">
+                <div class="faq-question">
+                    <h3>Can I delete my data from your system?</h3>
+                    <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>Since we do not store your uploaded images after analysis, there is no need to request deletion. If you have any concerns about your data, please <a href="{{ url_for('contact') }}">contact us</a>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-not-found" style="display: none;">
+            <div class="not-found-icon">
+                <i class="fas fa-search"></i>
+            </div>
+            <h3>No matching questions found</h3>
+            <p>Try different keywords or <a href="{{ url_for('contact') }}">contact us</a> with your specific question.</p>
+        </div>
+    </div>
+</section>
+
+<section class="contact-cta">
+    <div class="container">
+        <h2>Still have questions?</h2>
+        <p>We're here to help. Reach out to our team for personalized assistance.</p>
+        <a href="{{ url_for('contact') }}" class="btn btn-primary">Contact Us</a>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // FAQ toggle functionality
+        const questions = document.querySelectorAll('.faq-question');
+        questions.forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const isOpen = answer.style.maxHeight;
+
+                // Close all other answers
+                document.querySelectorAll('.faq-answer').forEach(item => {
+                    item.style.maxHeight = null;
+                });
+
+                document.querySelectorAll('.faq-toggle i').forEach(icon => {
+                    icon.className = 'fas fa-chevron-down';
+                });
+
+                // Toggle current answer
+                if (!isOpen) {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    this.querySelector('.faq-toggle i').className = 'fas fa-chevron-up';
+                }
+            });
+        });
+
+        // Category filter functionality
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+
+                // Update active button
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+
+                // Filter FAQ items
+                faqItems.forEach(item => {
+                    if (category === 'all' || item.getAttribute('data-category') === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                // Check if any items are visible
+                checkVisibleItems();
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('faq-search');
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('h3').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Check if any items are visible
+            checkVisibleItems();
+        });
+
+        function checkVisibleItems() {
+            const visibleItems = Array.from(faqItems).filter(item =>
+                item.style.display !== 'none'
+            );
+
+            const notFoundMessage = document.querySelector('.faq-not-found');
+            if (visibleItems.length === 0) {
+                notFoundMessage.style.display = 'block';
+            } else {
+                notFoundMessage.style.display = 'none';
+            }
+        }
+    });
+</script>
+{% endblock %}

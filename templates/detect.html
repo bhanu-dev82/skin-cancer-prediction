@@ -1,0 +1,249 @@
+{% extends "base.html" %}
+
+{% block title %}Skin Lesion Analysis - SkinAI{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/detect.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="detect-header">
+    <div class="container">
+        <h1>Skin Lesion Analysis</h1>
+        <p>Upload a clear image of your skin lesion for AI-powered analysis</p>
+    </div>
+</section>
+
+<section class="detection-tool">
+    <div class="container">
+        <div class="tool-container">
+            <div class="tool-sidebar">
+                <div class="info-box">
+                    <h3><i class="fas fa-info-circle"></i> How to get the best results</h3>
+                    <ul>
+                        <li>Use good lighting conditions</li>
+                        <li>Keep the lesion centered in the image</li>
+                        <li>Use a clear, in-focus image</li>
+                        <li>Include only the area of concern</li>
+                    </ul>
+                </div>
+
+                <div class="model-info">
+                    <h3>About Our Models</h3>
+                    <div class="model-info-item">
+                        <h4>MobileNetV2</h4>
+                        <p>Optimized for speed and efficiency with 74% accuracy on the HAM10000 dataset.</p>
+                    </div>
+                    <div class="model-info-item">
+                        <h4>EfficientNetB0</h4>
+                        <p>Higher accuracy model with 69% accuracy on skin cancer classification.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-main">
+ <form id="upload-form" enctype="multipart/form-data" action="/predict" method="POST">
+                    <div class="form-group">
+                        <label for="model-select">Select AI Model:</label>
+                        <select id="model-select" name="model" class="model-select">
+                            <option value="mobilenet">MobileNetV2</option>
+                            <option value="efficientnet">EfficientNetB0</option>
+                        </select>
+                    </div>
+
+                    <div class="upload-container">
+                        <div id="upload-box" class="upload-box">
+                            <input type="file" name="file" id="file-input" hidden accept=".jpg,.jpeg,.png">
+                            <div id="preview-container" class="preview-container hidden">
+              <img id="image-preview" src="#" alt="Image preview">
+                                <button type="button" id="remove-image" class="remove-image" aria-label="Remove image">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div id="upload-prompt" class="upload-prompt">
+                                <div class="upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <p>Drag & drop your image here or <span class="browse-text">browse</span></p>
+                                <p class="file-types">Supported formats: JPG, JPEG, PNG</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="analyze-button" class="btn btn-primary analyze-button" disabled>
+                        <i class="fas fa-search"></i> Analyze Image
+                    </button>
+                </form>
+
+                                <div id="loading" class="loading">
+                    <div class="spinner">
+                        <div class="bounce1"></div>
+                        <div class="bounce2"></div>
+                        <div class="bounce3"></div>
+                    </div>
+                    <p>Analyzing your image...</p>
+                </div>
+
+                <div id="error-message" class="error-message hidden">
+                    <div class="error-icon">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="error-content">
+                        <h3>Error</h3>
+                        <p id="error-text">An error occurred. Please try again.</p>
+                    </div>
+                </div>
+
+                <div id="result" class="result-card hidden">
+                    <div class="result-header">
+                        <h2><i class="fas fa-chart-pie"></i> Analysis Results</h2>
+                        <span class="model-badge" id="model-used-badge">MobileNetV2</span>
+                    </div>
+
+                    <div class="result-summary">
+                        <div class="result-image-container">
+                            <img id="result-image" src="#" alt="Analyzed image">
+                        </div>
+
+                        <div class="result-details">
+                            <div class="prediction-box">
+                                <h3>Primary Prediction</h3>
+                                <div class="prediction-name" id="prediction"></div>
+                                <div class="prediction-description" id="description"></div>
+                                <div class="confidence-meter">
+                                    <div class="confidence-label">Confidence:</div>
+                                    <div class="confidence-bar">
+                                        <div id="confidence-fill" class="confidence-fill"></div>
+                                    </div>
+                                    <div id="confidence" class="confidence-value">0%</div>
+                                </div>
+                            </div>
+
+                            <div class="severity-indicator" id="severity-indicator">
+                                <!-- Will be populated by JS based on prediction -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="result-tabs">
+                        <button class="tab-button active" data-tab="probabilities">Probabilities</button>
+                        <button class="tab-button" data-tab="information">Information</button>
+                        <button class="tab-button" data-tab="next-steps">Next Steps</button>
+                    </div>
+
+                    <div class="tab-content">
+                        <div id="probabilities-tab" class="tab-pane active">
+                            <h3>Class Probabilities</h3>
+                            <div id="probabilities" class="probabilities-grid"></div>
+                        </div>
+
+                        <div id="information-tab" class="tab-pane">
+                            <h3>About <span id="info-condition-name"></span></h3>
+                            <div id="condition-information"></div>
+
+                            <div class="info-resources">
+                                <h4>Additional Resources</h4>
+                                <ul id="resources-list">
+                                    <!-- Will be populated by JS based on prediction -->
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div id="next-steps-tab" class="tab-pane">
+                            <h3>Recommended Next Steps</h3>
+                            <div class="next-steps-content">
+                                <div class="next-step">
+                                    <div class="step-icon"><i class="fas fa-user-md"></i></div>
+                                    <div class="step-content">
+                                        <h4>Consult a Dermatologist</h4>
+                                        <p>This AI analysis is not a medical diagnosis. If you have concerns about a skin lesion, please consult with a dermatologist or healthcare provider.</p>
+                                    </div>
+                                </div>
+
+                                <div class="next-step">
+                                    <div class="step-icon"><i class="fas fa-notes-medical"></i></div>
+                                    <div class="step-content">
+                                        <h4>Keep Records</h4>
+                                        <p>Save this analysis and take regular photos of the lesion to track any changes over time.</p>
+                                    </div>
+                                </div>
+
+                                <div class="next-step">
+                                    <div class="step-icon"><i class="fas fa-shield-alt"></i></div>
+                                    <div class="step-content">
+                                        <h4>Sun Protection</h4>
+                                        <p>Regardless of the analysis result, practice sun safety by using sunscreen, wearing protective clothing, and avoiding peak sun hours.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="disclaimer-box">
+                                <p><strong>Important:</strong> SkinAI is an educational tool and not a substitute for professional medical advice. Always consult healthcare professionals for medical concerns.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="result-actions">
+                        <button id="save-result" class="btn btn-secondary">
+                            <i class="fas fa-download"></i> Save Results
+                        </button>
+                        <button id="new-analysis" class="btn btn-primary">
+                            <i class="fas fa-redo"></i> New Analysis
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="faq-preview">
+    <div class="container">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-items">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How accurate is the AI analysis?</h3>
+                    <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>Our models have been trained on large datasets of dermatological images. MobileNetV2 has approximately 74% accuracy on the HAM10000 dataset, while EfficientNetB0 has about 69% accuracy on skin cancer classification. However, AI analysis should never replace professional medical diagnosis.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Is my data private and secure?</h3>
+                    <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes. We do not store your uploaded images on our servers. All processing is done in real-time, and images are not saved after analysis. Your privacy is our priority.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Which skin conditions can the AI detect?</h3>
+                    <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="faq-answer">
+                    <p>Our AI models can analyze seven types of skin lesions: Actinic keratoses, Basal cell carcinoma, Benign keratosis-like lesions, Dermatofibroma, Melanoma, Melanocytic nevi, and Vascular lesions.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-more">
+            <a href="{{ url_for('faq') }}" class="btn btn-outline">View All FAQs</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/detect.js') }}"></script>
+<script>
+    // Make class descriptions available to JavaScript
+    window.CLASS_DESCRIPTIONS = {{ class_descriptions|tojson }};
+    window.CONDITION_INFO = {{ condition_info|tojson }};
+</script>
+{% endblock %}

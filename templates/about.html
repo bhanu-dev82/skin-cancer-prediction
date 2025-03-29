@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block title %}About SkinAI - Our Mission and Technology{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>About SkinAI</h1>
+        <p>Using artificial intelligence to improve skin health education</p>
+    </div>
+</section>
+
+<section class="about-mission">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-content">
+                <h2>Our Mission</h2>
+                <p>At SkinAI, we believe that early detection saves lives. Our mission is to leverage the power of artificial intelligence to provide accessible skin health education and empower individuals to be proactive about their skin health.</p>
+                <p>Skin cancer is one of the most common types of cancer, with over 5 million cases diagnosed worldwide each year. When detected early, the 5-year survival rate for melanoma is over 99%. However, if it spreads to distant parts of the body, the survival rate drops to about 27%.</p>
+                <p>By creating an educational tool that helps people understand potential skin concerns, we hope to encourage earlier medical consultations and improve outcomes through early detection.</p>
+            </div>
+            <div class="about-image">
+                <img src="{{ url_for('static', filename='images/mission.jpg') }}" alt="Medical professionals examining skin">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-technology">
+    <div class="container">
+        <h2>Our Technology</h2>
+        <p class="section-intro">SkinAI uses state-of-the-art deep learning models trained on large datasets of dermatological images.</p>
+
+        <div class="tech-grid">
+            <div class="tech-card">
+                <div class="tech-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3>Training Data</h3>
+                <p>Our models are trained on the HAM10000 dataset, which contains over 10,000 dermatoscopic images of skin lesions across seven different categories.</p>
+            </div>
+
+            <div class="tech-card">
+                <div class="tech-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>AI Models</h3>
+                <p>We utilize two powerful convolutional neural network architectures:</p>
+                <ul>
+                    <li><strong>MobileNetV2:</strong> A lightweight model optimized for mobile devices with 74% accuracy</li>
+                    <li><strong>EfficientNetB0:</strong> A more complex model with 69% accuracy on skin cancer classification</li>
+                </ul>
+            </div>
+
+            <div class="tech-card">
+                <div class="tech-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Continuous Improvement</h3>
+                <p>We regularly update our models with new training data and improved architectures to enhance accuracy and performance. Our team monitors the latest advancements in AI and dermatology to ensure SkinAI remains at the cutting edge.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-team">
+    <div class="container">
+        <h2>Our Team</h2>
+        <p class="section-intro">SkinAI was created by a multidisciplinary team of AI researchers, software engineers, and healthcare professionals.</p>
+
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="{{ url_for('static', filename='images/team/member1.jpg') }}" alt="Dr. Sarah Johnson">
+                </div>
+                <h3>Dr. Sarah Johnson</h3>
+                <p class="member-title">Medical Director</p>
+                <p class="member-bio">Board-certified dermatologist with over 15 years of experience in skin cancer detection and treatment.</p>
+            </div>
+
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="{{ url_for('static', filename='images/team/member2.jpg') }}" alt="Dr. Michael Chen">
+                </div>
+                <h3>Dr. Michael Chen</h3>
+                <p class="member-title">AI Research Lead</p>
+                <p class="member-bio">PhD in Computer Science with expertise in deep learning and computer vision for medical applications.</p>
+            </div>
+
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="{{ url_for('static', filename='images/team/member3.jpg') }}" alt="Emma Rodriguez">
+                </div>
+                <h3>Emma Rodriguez</h3>
+                <p class="member-title">Lead Developer</p>
+                <p class="member-bio">Full-stack developer specializing in AI-powered web applications and user experience design.</p>
+            </div>
+
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="{{ url_for('static', filename='images/team/member4.jpg') }}" alt="Dr. James Wilson">
+                </div>
+                <h3>Dr. James Wilson</h3>
+                <p class="member-title">Medical Advisor</p>
+                <p class="member-bio">Oncologist with a focus on melanoma research and early detection methodologies.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-research">
+    <div class="container">
+        <div class="research-grid">
+            <div class="research-content">
+                <h2>Our Research</h2>
+                <p>The technology behind SkinAI is based on peer-reviewed research in dermatology and artificial intelligence. Our team has published several papers on the application of deep learning for skin lesion classification.</p>
+                <p>We collaborate with leading medical institutions to validate our models and ensure they meet high standards of accuracy and reliability. While our tool is for educational purposes only, we strive to maintain the highest level of scientific rigor in our approach.</p>
+                <div class="research-links">
+                    <a href="#" class="btn btn-outline">View Publications</a>
+                    <a href="#" class="btn btn-outline">Research Methodology</a>
+                </div>
+            </div>
+            <div class="research-image">
+                <img src="{{ url_for('static', filename='images/research.jpg') }}" alt="AI research visualization">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-disclaimer">
+    <div class="container">
+        <div class="disclaimer-box">
+            <h3><i class="fas fa-exclamation-triangle"></i> Medical Disclaimer</h3>
+            <p>SkinAI is designed to be an educational tool only and is not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.</p>
+            <p>The information provided by SkinAI is not intended to diagnose, treat, cure, or prevent any disease. Never disregard professional medical advice or delay seeking it because of something you have read or seen on SkinAI.</p>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="container">
+        <h2>Ready to try SkinAI?</h2>
+        <p>Upload an image of your skin lesion and get an AI-powered analysis in seconds.</p>
+        <div class="cta-buttons">
+            <a href="{{ url_for('detect') }}" class="btn btn-primary">Try SkinAI Now</a>
+            <a href="{{ url_for('faq') }}" class="btn btn-secondary">Learn More in FAQs</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

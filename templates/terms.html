@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Terms of Service - SkinAI{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Terms of Service</h1>
+        <p>Last updated: January 1, 2023</p>
+    </div>
+</section>
+
+<section class="terms-content">
+    <div class="container">
+        <div class="content-card">
+            <h2>1. Acceptance of Terms</h2>
+            <p>By accessing or using SkinAI, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our service.</p>
+
+            <h2>2. Description of Service</h2>
+            <p>SkinAI provides AI-powered analysis of skin lesions for educational purposes only. Our service is not intended to replace professional medical advice, diagnosis, or treatment.</p>
+
+            <h2>3. Medical Disclaimer</h2>
+            <p>SkinAI is an educational tool only and is not a substitute for professional medical advice. The analysis provided by our AI models should not be used for self-diagnosis or treatment decisions. Always consult with a qualified healthcare provider for medical concerns.</p>
+
+            <h2>4. User Responsibilities</h2>
+            <p>Users are responsible for:</p>
+            <ul>
+                <li>Providing clear, high-quality images for analysis</li>
+                <li>Not relying solely on SkinAI for medical decisions</li>
+                <li>Seeking professional medical advice for skin concerns</li>
+                <li>Using the service in compliance with applicable laws</li>
+            </ul>
+
+            <h2>5. Privacy</h2>
+            <p>Your privacy is important to us. Please review our <a href="{{ url_for('privacy') }}">Privacy Policy</a> to understand how we collect, use, and protect your information.</p>
+
+            <h2>6. Intellectual Property</h2>
+            <p>All content, features, and functionality of SkinAI, including but not limited to text, graphics, logos, and code, are the exclusive property of SkinAI and are protected by copyright, trademark, and other intellectual property laws.</p>
+
+            <h2>7. Limitation of Liability</h2>
+            <p>SkinAI and its creators shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages resulting from your use or inability to use the service.</p>
+
+            <h2>8. Changes to Terms</h2>
+            <p>We reserve the right to modify these Terms of Service at any time. We will provide notice of significant changes by updating the "Last Updated" date at the top of this page.</p>
+
+            <h2>9. Contact Information</h2>
+            <p>If you have any questions about these Terms, please <a href="{{ url_for('contact') }}">contact us</a>.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

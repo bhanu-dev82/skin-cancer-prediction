@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SkinAI - Advanced AI-powered skin lesion analysis for early detection of skin cancer">
+    <meta name="keywords" content="skin cancer, melanoma, AI detection, dermatology, machine learning">
+    <meta name="author" content="SkinAI Team">
+
+    <title>{% block title %}SkinAI - AI-Powered Skin Cancer Detection{% endblock %}</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    {% if request.endpoint == 'about' %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+    {% elif request.endpoint == 'faq' %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/faq.css') }}">
+    {% elif request.endpoint == 'contact' %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
+    {% elif request.endpoint in ['terms', 'privacy'] %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/legal.css') }}">
+    {% endif %}
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="{{ url_for('index') }}" class="logo">
+                    <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="SkinAI Logo">
+                    <span>SkinAI</span>
+                </a>
+
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+
+                <div class="nav-links">
+                    <a href="{{ url_for('index') }}" class="{% if request.path == url_for('index') %}active{% endif %}">Home</a>
+                    <a href="{{ url_for('detect') }}" class="{% if request.path == url_for('detect') %}active{% endif %}">Detect</a>
+                    <a href="{{ url_for('about') }}" class="{% if request.path == url_for('about') %}active{% endif %}">About</a>
+                    <a href="{{ url_for('faq') }}" class="{% if request.path == url_for('faq') %}active{% endif %}">FAQ</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>SkinAI</h3>
+                    <p>Advanced AI-powered skin lesion analysis for early detection of skin cancer.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Home</a></li>
+                        <li><a href="{{ url_for('detect') }}">Detect</a></li>
+                        <li><a href="{{ url_for('about') }}">About</a></li>
+                        <li><a href="{{ url_for('faq') }}">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="{{ url_for('privacy') }}">Privacy Policy</a></li>
+                        <li><a href="{{ url_for('terms') }}">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Important Notice</h3>
+                    <p>This tool is for educational purposes only and is not a substitute for professional medical advice. Always consult with a healthcare professional for medical concerns.</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 SkinAI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Core JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    {% block extra_js %}{% endblock %}
+
+    <!-- Analytics (replace with your own) -->
+    <script async defer>
+        // Google Analytics or other analytics code
+    </script>
+</body>
+</html>

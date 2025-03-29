@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - SkinAI{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Contact Us</h1>
+        <p>Have questions or feedback? We'd love to hear from you.</p>
+    </div>
+</section>
+
+<section class="contact-content">
+    <div class="container">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Us</h3>
+                    <p>support@skinai.example.com</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Location</h3>
+                    <p>123 AI Avenue<br>Tech City, TC 10101</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Support Hours</h3>
+                    <p>Monday - Friday<br>9:00 AM - 5:00 PM EST</p>
+                </div>
+
+                <div class="social-links">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-container">
+                <h2>Send Us a Message</h2>
+                <form class="contact-form" action="/submit-contact" method="POST">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject">
+                            <option value="general">General Inquiry</option>
+                            <option value="support">Technical Support</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="privacy" name="privacy" required>
+                        <label for="privacy">I agree to the <a href="{{ url_for('privacy') }}">Privacy Policy</a></label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="faq-preview">
+    <div class="container">
+        <h2>Frequently Asked Questions</h2>
+        <p>Find quick answers to common questions about SkinAI.</p>
+        <div class="faq-buttons">
+            <a href="{{ url_for('faq') }}" class="btn btn-secondary">View All FAQs</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

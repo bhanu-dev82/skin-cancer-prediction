@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="error-container">
+    <h1>500 - Server Error</h1>
+    <p>Something went wrong on our end. We're working to fix it!</p>
+    <div class="actions">
+<a href="{{ url_for('index') }}" class="cta-button">Return Home</a>
+        <a href="{{ url_for('detect') }}" class="cta-button">Try Again</a>
+    </div>
+</div>
+{% endblock %}
